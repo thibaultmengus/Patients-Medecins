@@ -1,8 +1,22 @@
-#------------------------------------------------------------
-#        Script MySQL.
-#------------------------------------------------------------
+SET FEEDBACK OFF
+SET LINESIZE 150
+SET PAGESIZE 40
 
 
+ALTER SESSION SET NLS_DATE_FORMAT = 'dd/mm/yyyy';
+
+PROMPT --> DEBUT DU SCRIPT
+
+** Requête SQL de création des tables **
+
+DROP TABLE personne CASCADE CONSTRAINTS PURGE
+/
+DROP TABLE medecin CASCADE CONSTRAINTS PURGE
+/
+DROP TABLE consultation CASCADE CONSTRAINTS PURGE
+/
+
+PROMPT CREATION DES TABLES
 #------------------------------------------------------------
 # Table: Personne
 #------------------------------------------------------------
