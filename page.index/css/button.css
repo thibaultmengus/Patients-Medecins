@@ -1,0 +1,42 @@
+a.Connexion {
+	float: right;
+	width: 110px;
+	background: #e5e3e3;
+	line-height: 25px;
+	text-align: center;
+	font-size: 15px;
+	color: #000;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute !important;
+
+top: 35%;
+left: 51%;
+}
+
+a.Connexion:hover {
+	background-color: #57bcc0;
+	color: #FFFFFF;
+}
+
+
+a.Inscription {
+	float: right;
+	width: 110px;
+	background: #e5e3e3;
+	line-height: 25px;
+	text-align: center;
+	font-size: 15px;
+	color: #000;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute !important;
+
+top: 35%;
+left: 42%;
+}
+
+a.Inscription:hover {
+	background-color: #57bcc0;
+	color: #FFFFFF;
+}

@@ -1,0 +1,15 @@
+
+.container-fluid,.row {
+	height:23%;
+}
+
+.board-container {
+	box-sizing:border-box;
+	height: 40%;
+}
+
+#board {
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+}
