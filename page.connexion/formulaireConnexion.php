@@ -11,6 +11,8 @@
 </head>
 <body>
 <?php
+include '../fonctionsBdd.php';
+include '../fonctionsUtiles.inc.php';
 session_start();
 $formulaire = '
 <div  class="text-center">
@@ -20,7 +22,7 @@ $formulaire = '
 <div class="container-fluid">
     <div class="row board-container col-lg-offset-3 col-lg-6 col-xs-13">
         <div id="board">
-            <form method="GET" action="redirection.php">
+            <form method="GET" action="formulaireConnexion.php">
             <div class="form-group " >
                 <label for="inputEmail"></label>
                 <input name="inputEmail" type="text" class="form-control" id="inputEmail" onclick="javascript:this.value = \'\';"
@@ -50,13 +52,12 @@ $formulaire = $formulaire . '" >
 </div>';
 
 // Si l'utilsateur arrive pour la première fois sur la page, on lui propose le formulaire de connexion
-if (! isset($_GET['inputEmail']) ) {
+if (! isset($_GET['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
     echo $formulaire;
 
-} else {
-    
+} else {   
     // S'il est déjà connecté, on lui propose un lien vers la page d'accueil
-    if($_SESSION['estConnecte']) {
+    if(isset($_SESSION['estConnecte'])) {
         if($_SESSION['estMedecin'])
             header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
         else

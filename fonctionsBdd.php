@@ -15,7 +15,7 @@ class fonctionsBdd
     function __construct()
     {
         try {
-            $this->bdd = new PDO('mysql:host=localhost;dbname=sea2;charset=utf8', 'root', '');
+            $this->bdd = new PDO('mysql:host=localhost;dbname=PatientsMedecins;charset=utf8', 'root', '');
         } catch (Exception $e) {
             die('Erreur : impossible de se connecter à la base de donnée, le site est inaccessible.');
         }
@@ -34,8 +34,8 @@ class fonctionsBdd
         $requete->execute();
         $data = $requete->fetch(PDO::FETCH_ASSOC);
         
-        if ($data['password'] == md5(htmlspecialchars($mdp))) {
-            $requete = $this->bdd->prepare('SELECT idMedecin FROM utilisateur WHERE idMedecin = :idPersonne');
+        if ($data['password'] == $mdp) { //rajouter le md5 après!
+            $requete = $this->bdd->prepare('SELECT idMedecin FROM Medecin WHERE idMedecin = :idPersonne');
             $requete->bindValue(':idPersonne', $data['idPersonne']);
             $requete->execute();
             $data2 = $requete->fetch(PDO::FETCH_ASSOC);
