@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/entete.css">
+	<link rel="stylesheet" type="text/css" href="css/menu_deroulant.css">
+	<link rel="stylesheet" type="text/css" href="css/board.css">
+	<link rel="stylesheet" type="text/css" href="css/button.css">
+	<link rel="stylesheet" type="text/css" href="css/page_creation_fiche.css">
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+	<title>Créer un compte</title>
+	<link rel="icon" href="img/logo_trans.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+</head>
+<body>
+	<?php
+		include '../entete/entete.html';
+		include '../menu_deroulant/menu_deroulant.html';
+		include '../user_dropdown/user_menu.html';
+	?>
+
+	<h2 id="creer" class="text-center col-lg-offset-3 col-lg-6">Créer un compte</h2>
+	<div class="row board-container col-lg-offset-3 col-lg-6">
+		<div class="container-fluid">
+			<div id="board">
+				<form>
+					<div class="form-group">
+				    	<label for="inputId">Identifiant :</label>
+				    	<input type="text" class="form-control" id="inputId" >
+					</div>
+					<div class="form-group">
+				    	<label for="inputMdp">Mot de passe :</label>
+				    	<input type="text" class="form-control" id="inputMdp" >
+					</div>
+					<div class="form-group">
+				    	<label for="inputNom">Nom :</label>
+				    	<input type="text" class="form-control" id="inputNom" >
+					</div>
+					<div class="form-group">
+				    	<label for="inputPrenom">Prénom :</label>
+				    	<input type="text" class="form-control" id="inputPrenom" >
+					</div>
+					
+					<div id="buttonConnexion">
+						<a href="">Créer</a> 
+	       			</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

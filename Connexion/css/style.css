@@ -1,0 +1,71 @@
+html,body {
+	height:100%;
+	margin:0;
+	padding:0;
+	background-color:#f3f5f5;
+	font-family: 'Titillium Web', sans-serif;
+}
+#logo {
+	margin-top: 5%;
+}
+.container-fluid,.row {
+	height:23%;
+}
+
+.board-container {
+	/* width: 50%; */
+	box-sizing:border-box;
+	height: 40%;
+}
+
+#board {
+	background-color: white;
+	padding: 40px;
+}
+
+#session {
+	font-size: 200%;
+	color: #8d8d8d;
+}
+
+#identifiant {
+	font-size: 23px;
+	color: #8d8d8d;
+}
+
+.form-group {
+	font-size: 150%;
+}
+
+.form-check {
+	font-size: 110%;
+}
+
+#buttonConnexion {
+
+	float: right;
+	width: 130px;
+	background: #e5e3e3;
+	line-height: 25px;
+	text-align: center;
+	font-size: 15px;
+	color: #000;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#buttonConnexion:hover {
+	background-color: #57bcc0;
+	color: #FFFFFF;
+}
+
+#mdpOublie {
+	padding-left: 40px;
+	font-size: 110%;
+}
+
+#footer {
+	bottom:0;
+	left:0;
+	height:100px;
+}

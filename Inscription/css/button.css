@@ -1,0 +1,16 @@
+#buttonConnexion {
+	float: right;
+	width: 110px;
+	background: #e5e3e3;
+	line-height: 25px;
+	text-align: center;
+	font-size: 15px;
+	color: #000;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#buttonConnexion:hover {
+	background-color: #57bcc0;
+	color: #FFFFFF;
+}
