@@ -1,18 +1,18 @@
-INSERT INTO personne(nom,prenom,telephone) VALUES ('sartre'   ,'jean'   ,'+33612256876');
-INSERT INTO personne(nom,prenom,telephone) VALUES ('menot'    ,'bastien','+33648853512');
-INSERT INTO personne(nom,prenom,telephone) VALUES ('lihoreau' ,'david'  ,'+33771690013');
-INSERT INTO personne(nom,prenom,telephone) VALUES ('skywalker','luc'    ,'+33697488522');
-INSERT INTO personne(nom,prenom,telephone) VALUES ('sebastien','patrick','+33669430034');
-INSERT INTO personne(nom,prenom,telephone) VALUES ('rabiot'   ,'adrien' ,'+33769332655');
+INSERT INTO personne(nom,prenom,telephone,mail,password) VALUES ('sartre'   ,'jean'   ,'+33612256876','jean.sartre@gmail.com','azerty');
+INSERT INTO personne(nom,prenom,telephone,mail,password) VALUES ('menot'    ,'bastien','+33648853512','bastien.menot@gmail.com','azerty');
+INSERT INTO personne(nom,prenom,telephone,mail,password) VALUES ('lihoreau' ,'david'  ,'+33771690013','d.lihoreau@gmail.com','ouestlemd5');
+INSERT INTO personne(nom,prenom,telephone,mail,password) VALUES ('skywalker','luc'    ,'+33697488522','l.skywalker@gmail.com','motdepasse');
+INSERT INTO personne(nom,prenom,telephone,mail,password) VALUES ('sebastien','patrick','+33669430034','etonfaittournerlesserviettes@gmail.com','123456');
+INSERT INTO personne(nom,prenom,telephone,mail,password) VALUES ('rabiot'   ,'adrien' ,'+33769332655','adrienrabbit@gmail.com','qwerty');
 
 INSERT INTO medecin(idMedecin,specialite,adresse,cp,ville)
 	SELECT idPersonne,'généraliste','12 rue rivoli','75016','Paris'
-	FROM personne WHERE nom="sartre" AND prenom="jean";
+	FROM personne WHERE mail="jean.sartre@gmail.com"
 
 INSERT INTO medecin(idMedecin,specialite,adresse,cp,ville)
 	SELECT idPersonne,'généraliste','33 avenue charles de gaulle','92000','Nanterre'
-	FROM personne WHERE nom="menot" AND prenom="bastien";
+	FROM personne WHERE mail="bastien.menot@gmail.com"
 
 INSERT INTO medecin(idMedecin,specialite,adresse,cp,ville)
 	SELECT idPersonne,'généraliste','67 avenue des malandrins','75019','Paris'
-	FROM personne WHERE nom="lihoreau" AND prenom="david";
+	FROM personne WHERE mail="etonfaittournerlesserviettes@gmail.com"

@@ -7,6 +7,8 @@ CREATE TABLE personne(
         nom        Varchar (50) NOT NULL,
         prenom     Varchar (50) NOT NULL,
         telephone  Varchar (12) NOT NULL,
+		mail	   Varchar (50) NOT NULL,
+		password   Varchar (255) NOT NULL,
 
 	CONSTRAINT Personne_PK PRIMARY KEY (idPersonne)
 );
@@ -17,7 +19,7 @@ CREATE TABLE personne(
 #------------------------------------------------------------
 
 CREATE TABLE medecin(
-        idMedecin Int NOT NULL,
+        idMedecin  Int NOT NULL,
         specialite Varchar (50) NOT NULL,
         adresse    Varchar (50) NOT NULL,
         cp         Int NOT NULL,
