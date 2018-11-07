@@ -1,5 +1,16 @@
 /* Menu Déroulant */
+.bloc1{
+	display:inline-block;
+	width:50px;
+	height:50px;	
+}
 
+.bloc2{
+	height :50 px;
+	/* vertical-align:middle; */
+	transform: translateY(-50%);
+	display:inline-block;
+}
 nav {
 	width: 100%;
 	background-color: #57bcc0;
@@ -35,18 +46,17 @@ nav label{
 	display: none;
 }
 
-nav a{
-	display: inline-block;
-}
 
 nav > ul > li > a {
 	padding: 20px 30px;
 	color: #FFF;
+	/* text-decoration: unset; */
+	text-decoration : none;
+}
+nav > img  {
+	padding: 10px 5px;
 }
 
-.sousmenu {
-	display: none;
-}
 nav li:hover .sousmenu {
 	display: inline-block;
 	position: absolute;
@@ -54,6 +64,14 @@ nav li:hover .sousmenu {
 	left: 0px;
 	padding: 0px;
 	z-index: 1000;
+}
+nav > ul > li:hover a{
+	padding: 15px 30px 20px 30px;
+	text-decoration: underline;
+}
+
+.sousmenu {
+	display: none;
 }
 
 .sousmenu li{
@@ -66,10 +84,24 @@ nav li:hover .sousmenu {
 	color: #FFF;
 	width: 270px;
 }
-.accueil a
-{
-	decoration:none;
-}
+
+/* .accueil a */
+/* { */
+	/* text-decoration : none; */
+/* } */
+/* .rechercher a */
+/* { */
+	/* text-decoration:none;	 */
+/* } */
+/* .compte a */
+/* { */
+	/* text-decoration:none; */
+/* } */
+/* .creneau a */
+/* { */
+	/* text-decoration:none;	 */
+/* } */
+
 .accueil:hover{
 	border-top: 5px solid #f3f5f5;
 	background-color: rgba(0,146,146,0.15);
@@ -78,11 +110,11 @@ nav li:hover .sousmenu {
 	border-top: 5px solid #f3f5f5;
 	background-color: rgba(0,146,146,0.15);
 }
-.compte:hover{
+.creneau:hover{
 	border-top: 5px solid #f3f5f5;
 	background-color: rgba(0,146,146,0.15);
 }
-.creneau:hover{
+.compte:hover{
 	border-top: 5px solid #f3f5f5;
 	background-color: rgba(0,146,146,0.15);
 }
@@ -92,9 +124,6 @@ nav li:hover .sousmenu {
 	background-color: rgba(0,146,146,0.15);
 }
 
-nav > ul > li:hover a{
-	padding: 15px 30px 20px 30px;
-}
 
 .accueil .sousmenu {
 	background-color: rgb(0,146,146);
@@ -111,10 +140,6 @@ nav > ul > li:hover a{
 .creneau  .sousmenu {
 	background-color: rgb(0,146,146);
 } 
-
-.compte_user  .sousmenu {
-	background-color: rgb(0,146,146);
-}
 
 .sousmenu li:hover a{
 	color: #FFF;
@@ -136,9 +161,11 @@ nav > ul > li:hover a{
 	background-color: rgb(0,146,146);
 }
 
-.compte_user  .sousmenu li:hover{
-	background-color: rgb(0,146,146);
-}
+
+
+
+
+
 /* menu responsive */
 
 .menu-mobile{
