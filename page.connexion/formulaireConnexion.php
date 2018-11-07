@@ -62,10 +62,10 @@ if (! isset($_GET['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
             header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
         else
             header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.patient/accueil.php');
-    }
+}
     
-    // Si le formulaire n'est pas bien rempli (champs vide, ou variable égale à null
-    if (! formulaireBienRempli($_GET)) {
+// Si le formulaire n'est pas bien rempli (champs vide, ou variable égale à null
+if (! formulaireBienRempli($_GET)) {
         echo $formulaire . '<script> alert("Veuillez remplir tous les champs pour vous connecter") </script>';
         
     } else {
@@ -75,7 +75,7 @@ if (! isset($_GET['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
             if($_SESSION['estMedecin'])
                 header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
             else
-                    header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.patient/accueil.php');
+                header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.patient/accueil.php');
         } else {
             echo $formulaire . '<script> alert("Le mot de passe ou l\'identifiant entré n\'est pas correcte.") </script>';
         }

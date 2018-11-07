@@ -1,0 +1,177 @@
+/* Menu Déroulant */
+
+nav {
+	width: 100%;
+	background-color: #57bcc0;
+}
+
+nav > ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+nav li{
+	list-style-type: none;
+}
+
+nav > ul > li {
+	float: left;
+	position: relative;
+}
+nav > ul::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.sousmenu {
+	display: none;
+}
+nav input[type=checkbox] {
+	display: none;
+}
+
+nav label{
+	display: none;
+}
+
+nav a{
+	display: inline-block;
+}
+
+nav > ul > li > a {
+	padding: 20px 30px;
+	color: #FFF;
+}
+
+.sousmenu {
+	display: none;
+}
+nav li:hover .sousmenu {
+	display: inline-block;
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	padding: 0px;
+	z-index: 1000;
+}
+
+.sousmenu li{
+	border-bottom: 1px solid #FFF;
+}
+
+.sousmenu li a {
+	padding: 15px 30px;
+	font-size: 13px;
+	color: #FFF;
+	width: 270px;
+}
+
+.fiches:hover{
+	border-top: 5px solid #f3f5f5;
+	background-color: rgba(0,146,146,0.15);
+}
+.comptes:hover{
+	border-top: 5px solid #f3f5f5;
+	background-color: rgba(0,146,146,0.15);
+}
+.configuration:hover{
+	border-top: 5px solid #f3f5f5;
+	background-color: rgba(0,146,146,0.15);
+}
+.consultation:hover{
+	border-top: 5px solid #f3f5f5;
+	background-color: rgba(0,146,146,0.15);
+}
+.deconnexion:hover{
+	border-top: 5px solid #f3f5f5;
+	background-color: rgba(0,146,146,0.15);
+}
+
+nav > ul > li:hover a{
+	padding: 15px 30px 20px 30px;
+}
+
+.fiches .sousmenu {
+	background-color: rgb(0,146,146);
+}
+
+.comptes  .sousmenu {
+	background-color: rgb(0,146,146);
+}
+
+.configuration .sousmenu {
+	background-color: rgb(0,146,146);
+}
+
+.consultation  .sousmenu {
+	background-color: rgb(0,146,146);
+} 
+
+.deconnexion  .sousmenu {
+	background-color: rgb(0,146,146);
+}
+
+.sousmenu li:hover a{
+	color: #FFF;
+}
+
+.fiches .sousmenu li:hover{
+	background-color: rgb(0,146,146);
+}
+
+.comptes  .sousmenu li:hover{
+	background-color: rgb(0,146,146);
+}
+
+.configuration .sousmenu li:hover{
+	background-color: rgb(0,146,146);
+}
+
+.consultation  .sousmenu li:hover{
+	background-color: rgb(0,146,146);
+}
+
+.deconnexion  .sousmenu li:hover{
+	background-color: rgb(0,146,146);
+}
+/* menu responsive */
+
+.menu-mobile{
+	display: none;
+}
+
+nav input[type=checkbox]{
+	display: none;
+}
+
+nav input[type=checkbox]:checked ~ ul{
+	display: block;
+}
+
+@media screen and (max-width: 680px){
+	.menu-mobile {
+		display: block;
+		color: #FFF;
+		background-color: rgba(87, 188, 192,0);
+		text-align: center;
+		padding: 12px 0;
+	}
+	nav ul{
+		display: none;
+	}
+	nav ul li , nav ul li a{
+		width: 100%;
+		text-align: center;
+	} 
+
+	nav ul li a, nav ul li:hover a{
+		padding: 10px 0px;
+	}
+
+	nav li:hover .sousmenu{
+		display: block;
+		position: static;
+	}
+}
+/* Fin menu déroulant*/
