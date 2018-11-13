@@ -1,0 +1,13 @@
+html,body {
+	height:100%;
+	margin:0;
+	padding:0;
+	background-color:#f3f5f5;
+	font-family: 'Titillium Web', sans-serif;
+}
+#logo_sea {
+	margin-top: 5%;
+}
+#logo_cfa {
+	float: right;
+}
