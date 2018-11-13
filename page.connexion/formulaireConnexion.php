@@ -54,7 +54,7 @@ if (! isset($_POST['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
     echo $formulaire;
 
 } else {   
-    // S'il est déjà connecté, on lui propose un lien vers la page d'accueil
+    // S'il est déjà connecté, on redirige l utilisateur
     if(isset($_SESSION['estConnecte'])) {
         if($_SESSION['estMedecin'])
             header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
