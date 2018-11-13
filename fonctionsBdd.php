@@ -59,7 +59,7 @@ class fonctionsBdd
 	
 	public function rechercheMedecin($nom, $specialite, $ville)
 	{
-		$requete = $this->sendRequest('SELECT M.nom, M.prenom, S.specialite, M.adresse, M.codePostal, M.ville FROM Personne P JOIN Medecin M ON M.idMedecin=P.idPersonne JOIN Specialite S ON M.idSpecialite=S.idSpecialite WHERE M.nom LIKE "%:nom%" AND S.specialite LIKE "%:specialite%" AND M.ville LIKE "%:ville%"')
+		$requete = $this->bdd->prepare('SELECT M.nom, M.prenom, S.specialite, M.adresse, M.codePostal, M.ville FROM Personne P JOIN Medecin M ON M.idMedecin=P.idPersonne JOIN Specialite S ON M.idSpecialite=S.idSpecialite WHERE M.nom LIKE "%:nom%" AND S.specialite LIKE "%:specialite%" AND M.ville LIKE "%:ville%"');
         $requete->bindValue(':nom', $nom);
         $requete->bindValue(':specialite', $specialite);
         $requete->bindValue(':ville', $ville);
@@ -110,10 +110,10 @@ class fonctionsBdd
      */
 	public function consulteRendezVousPatient($start, $end)
 	{
-		$requete = $this->sendRequest('SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne AND creneauHoraire IS BETWEEN :start AND :end');
-		$requete->bindValue(':idMedecin', $_SESSION['idPersonne']);
-		$requete->bindValue(':start', $start);
-		$requete->bindValue(':end', $end);
+		$requete = $this->bdd->prepare('SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne AND creneauHoraire IS BETWEEN :start AND :end');
+		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
+		$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
+		$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
 		return $this->execute($requete);
 	}
 	
