@@ -147,9 +147,9 @@ class fonctionsBdd
             $requete_medecin = $this->prepare("INSERT INTO medecin(adresse,codePostal,ville) VALUES (:adresse,:codePostal,:ville)");
 
             if (isset($tab['adresse']) && isset($tab['codePostal']) && isset($tab['ville'])){
-                $requete_medecin->bindValue('adresse',$tab['adresse']);
-                $requete_medecin->bindValue('codePostal',$tab['codePostal']);
-                $requete_medecin->bindValue('ville',$tab['ville']);
+                $requete_medecin->bindValue('adresse',htmlspecialchars($tab['adresse']));
+                $requete_medecin->bindValue('codePostal',htmlspecialchars($tab['codePostal']));
+                $requete_medecin->bindValue('ville',htmlspecialchars($tab['ville']));
 
                 $requete_reponse_medecin = $this->execute();
             }
@@ -158,20 +158,20 @@ class fonctionsBdd
     }
 
     public function editInfo($tab){
-        $requete_update = "UPDATE personne SET mail = :mail  ,nom = :nom, prenom = :prenom, telephone = :telephone WHERE idPersonne = $tab['idPersonne']";
+        $requete_update = $this->prepare("UPDATE personne SET mail = :mail  ,nom = :nom, prenom = :prenom, telephone = :telephone WHERE idPersonne = $tab['idPersonne']");
         $requete_update->bindValue(':mail',editMail(htmlspecialchars($tab['mail'])) );
-        $requete_update->bindValue(':mail',editNom(htmlspecialchars($tab['mail'])) );
-        $requete_update->bindValue(':mail',editPrenom(htmlspecialchars($tab['mail'])) );
-        $requete_update->bindValue(':mail',editTelephone(htmlspecialchars($tab['mail'])) );
+        $requete_update->bindValue(':nom',editNom(htmlspecialchars($tab['nom'])) );
+        $requete_update->bindValue(':prenom',editPrenom(htmlspecialchars($tab['prenom'])) );
+        $requete_update->bindValue(':telephone',editTelephone(htmlspecialchars($tab['prenom'])) );
 
     }
 
 
     //il faut verifier si le nouvel email existe deja dans la base
     public function editMail($tab){
-        $requete_update = "UPDATE personne SET prenom = :mail WHERE idPersonne = $tab['idPersonne']";
+        $requete_update = $this->prepare("UPDATE personne SET prenom = :mail WHERE idPersonne = $tab['idPersonne']");
         $req_check = $this->bdd->prepare("SELECT 'mail existe' FROM personne WHERE EXISTS (SELECT mail FROM personne where mail = :mail) limit 1");
-        $req_check->bindValue("",$tab['mail']);
+        $req_check->bindValue(":mail",$tab['mail']);
         $req_check->execute();
 
         if(!isset($req_check)){
@@ -189,7 +189,7 @@ class fonctionsBdd
     }
 
     public function editPrenom($tab){
-        $requete_update = "UPDATE personne SET prenom = :prenom WHERE idPersonne = $tab['idPersonne']";
+        $requete_update = $this->prepare("UPDATE personne SET prenom = :prenom WHERE idPersonne = $tab['idPersonne']");
         if (isset($tab['prenom']) ){
             $requete_update->bindValue(':prenom',$tab['prenom']);
             $requete_update->execute();
@@ -199,7 +199,7 @@ class fonctionsBdd
     }
 
     public function editNom($tab){
-        $requete_update = "UPDATE personne SET nom = :nom WHERE idPersonne = $tab['idPersonne']";
+        $requete_update = $this->prepare("UPDATE personne SET nom = :nom WHERE idPersonne = $tab['idPersonne']");
         if (isset($tab['nom']) ){
             $requete_update->bindValue(':nom',$tab['nom']);
             $requete_update->execute();
@@ -210,7 +210,7 @@ class fonctionsBdd
 
 
     public function editTelephone($tab){
-        $requete_update = "UPDATE personne SET telephone = :telephone WHERE idPersonne = $tab['idPersonne']";
+        $requete_update = $this->prepare("UPDATE personne SET telephone = :telephone WHERE idPersonne = $tab['idPersonne']");
         if (isset($tab['telephone']) ){
             $requete_update->bindValue(':telephone',$tab['telephone']);
             $requete_update->execute();
@@ -218,5 +218,10 @@ class fonctionsBdd
         }
         else return false;
     }
+/*
+    public function editInfoMedecin($tab){
+            $req_update = $this->prepare("UPDATE `medecin` SET `idMedecin`=[value-1],`adresse`=[value-2],`codePostal`=[value-3],`ville`=[value-4],`idSpecialite`=[value-5] WHERE 1");
+        }*/
+}
 }
 ?>
