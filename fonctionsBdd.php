@@ -64,7 +64,7 @@ class fonctionsBdd
      */
 	public function ajouteRendezVousPatient($idMedecin, $creneauHoraire)
 	{
-		$requete = $this->sendRequest('UPDATE Consultation SET idPersonne = :idPersonne WHERE idMedecin=:idMedecin AND creneauHoraire=:creneauHoraire')
+		$requete = $this->bdd->prepare('UPDATE Consultation SET idPersonne = :idPersonne WHERE idMedecin=:idMedecin AND creneauHoraire=:creneauHoraire');
 		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
 		$requete->bindValue(':idMedecin', $idMedecin);
 		$requete->bindValue(':creneauHoraire', $creneauHoraire);
@@ -78,7 +78,7 @@ class fonctionsBdd
      */
 	public function supprimeRendezVousPatient($idMedecin, $creneauHoraire)
 	{
-		$requete = $this->sendRequest('UPDATE Consultation SET idPersonne = NULL WHERE idMedecin=:idMedecin AND creneauHoraire=:creneauHoraire')
+		$requete = $this->bdd->prepare('UPDATE Consultation SET idPersonne = NULL WHERE idMedecin=:idMedecin AND creneauHoraire=:creneauHoraire');
 		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
 		$requete->bindValue(':idMedecin', $idMedecin);
 		$requete->bindValue(':creneauHoraire', $creneauHoraire);
@@ -91,7 +91,7 @@ class fonctionsBdd
      */
 	public function consulteRendezVousLibres($idMedecin)
 	{
-		$requete = $this->sendRequest('SELECT * FROM consultationMedecinLibre WHERE idMedecin=:idMedecin')
+		$requete = $this->bdd->prepare('SELECT * FROM consultationMedecinLibre WHERE idMedecin=:idMedecin');
 		$requete->bindValue(':idMedecin', $idMedecin);
 		return $this->execute($requete);
 	}
@@ -102,7 +102,7 @@ class fonctionsBdd
      */
 	public function ajouteRendezVousMedecin($creneauHoraire)
 	{
-		$requete = $this->sendRequest('INSERT INTO Consultation (idMedecin, creneauHoraire) VALUES (:idMedecin, :creneauHoraire)')
+		$requete = $this->bdd->prepare('INSERT INTO Consultation (idMedecin, creneauHoraire) VALUES (:idMedecin, :creneauHoraire)');
 		$requete->bindValue(':idMedecin', $_SESSION['idPersonne']);
 		$requete->bindValue(':creneauHoraire', $creneauHoraire);
 		$this->execute($requete);
@@ -114,7 +114,7 @@ class fonctionsBdd
      */
 	public function supprimeRendezVousMedecin($creneauHoraire)
 	{
-		$requete = $this->sendRequest('DELETE FROM Consultation WHERE idMedecin=:idMedecin AND creneauHoraire=:creneauHoraire;')
+		$requete = $this->bdd->prepare('DELETE FROM Consultation WHERE idMedecin=:idMedecin AND creneauHoraire=:creneauHoraire;');
 		$requete->bindValue(':idMedecin', $_SESSION['idPersonne']);
 		$requete->bindValue(':creneauHoraire', $creneauHoraire);
 		$this->execute($requete);
@@ -125,7 +125,7 @@ class fonctionsBdd
      */
 	public function consulteRendezVousMedecin()
 	{
-		$requete = $this->sendRequest('SELECT * FROM consultationPatient WHERE idMedecin=:idMedecin')
+		$requete = $this->bdd->prepare('SELECT * FROM consultationPatient WHERE idMedecin=:idMedecin');
 		$requete->bindValue(':idMedecin', $_SESSION['idPersonne']);
 		return $this->execute($requete);
 	}
