@@ -106,6 +106,18 @@ class fonctionsBdd
 	}
 	
 	/**
+     * Consulte les rendez-vous du médecin connecté
+     */
+	public function consulteRendezVousPatient($start, $end)
+	{
+		$requete = $this->sendRequest('SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne AND creneauHoraire IS BETWEEN :start AND :end');
+		$requete->bindValue(':idMedecin', $_SESSION['idPersonne']);
+		$requete->bindValue(':start', $start);
+		$requete->bindValue(':end', $end);
+		return $this->execute($requete);
+	}
+	
+	/**
      * @param $creneauHoraire Créneau horaire du rendez-vous à ajouter
      * Ajoute un rendez-vous pour le médecin connecté
      */
