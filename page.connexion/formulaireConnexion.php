@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="formulaireConnexion.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -22,37 +24,33 @@ $formulaire = '
 <div class="container-fluid">
     <div class="row board-container col-lg-offset-3 col-lg-6 col-xs-13">
         <div id="board">
-            <form method="GET" action="formulaireConnexion.php">
+            <form method="POST" action="formulaireConnexion.php">
             <div class="form-group " >
                 <label for="inputEmail"></label>
-                <input name="inputEmail" type="text" class="form-control" id="inputEmail" onclick="javascript:this.value = \'\';"
-value="';if(isset($_GET['inputEmail'])) $formulaire = $formulaire . $_GET['inputEmail']; else $formulaire = $formulaire . "Adresse mail";
-$formulaire = $formulaire . '" >
+                    <input name="inputEmail" type="text" class="form-control" id="inputEmail"
+                    value="';if(isset($_POST['inputEmail'])) $formulaire = $formulaire . $_POST['inputEmail'];
+                    else $formulaire = $formulaire . "Adresse mail";
+$formulaire = $formulaire . '" ><span></span>
 		    </div>
 			<div class="form-group">
-			     <label for="inputPassword">Mot de passe</label>
-				 <input name="inputPassword" type="text" class="form-control" id="inputPassword"
-                  onclick="javascript:this.value = \'\';javascript:this.type=\'password\'" value="Mot de passe">
+			     <label for="inputPassword"></label>
+				    <input name="inputPassword" type="text" class="form-control" id="inputPassword"
+                    onclick="javascript:this.value = \'\';javascript:this.type=\'password\'" value="Mot de passe">
 			</div>
 			<div class="form-check">
-		         <label class="form-check-label">
-			     <input type="checkbox" class="form-check-input">
-				 Se souvenir de moi
-				 </label>
 		    </div>
 			<div id="buttonConnexion">
-			     <input type="submit" value="Se connecter" />
+			     <input id ="boutonSubmit" type="submit" value="Se connecter"/>
 			</div>
 			</form>
 		</div>
-		<a href="" id="mdpOublie" >Mot de passe oublié ?</a>
 		<div id="footer">
         </div>
 	</div>
 </div>';
 
 // Si l'utilsateur arrive pour la première fois sur la page, on lui propose le formulaire de connexion
-if (! isset($_GET['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
+if (! isset($_POST['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
     echo $formulaire;
 
 } else {   
@@ -65,13 +63,13 @@ if (! isset($_GET['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
 }
     
 // Si le formulaire n'est pas bien rempli (champs vide, ou variable égale à null
-if (! formulaireBienRempli($_GET)) {
+if (! formulaireBienRempli($_POST)) {
         echo $formulaire . '<script> alert("Veuillez remplir tous les champs pour vous connecter") </script>';
         
     } else {
         $bdd = new fonctionsBdd();
         
-        if ($bdd->connexion($_GET['inputEmail'], $_GET['inputPassword'])) {
+        if ($bdd->connexion($_POST['inputEmail'], $_POST['inputPassword'])) {
             if($_SESSION['estMedecin'])
                 header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
             else
@@ -82,4 +80,8 @@ if (! formulaireBienRempli($_GET)) {
     }
 }
 ?>
+</body>
+
+
+
 				    		   

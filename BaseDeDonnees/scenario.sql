@@ -24,8 +24,13 @@ UPDATE Consultation
 SET idPersonne = NULL
 WHERE idMedecin=$idMedecin AND creneauHoraire=$creneauHoraire;
 
--- Cas 4 : Chercher un créneau
-SELECT C.creneauHoraire, M.
+-- Cas 4 : Chercher un médecin
+SELECT M.nom, M.prenom, S.specialite, M.adresse, M.codePostal, M.ville
+FROM Personne P
+FROM Medecin M ON M.idMedecin=P.idPersonne
+JOIN Specialite S ON M.idSpecialite=S.idSpecialite
+WHERE M.nom LIKE "%$nom%" AND S.specialite LIKE "%$specialite%" AND M.ville LIKE "%$ville%"
+;
 
 --
 -- Cas Medecin

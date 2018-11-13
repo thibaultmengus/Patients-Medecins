@@ -13,7 +13,6 @@ html,body {
 }
 
 .board-container {
-	/* width: 50%; */
 	box-sizing:border-box;
 	height: 40%;
 }
@@ -59,13 +58,14 @@ html,body {
 	color: #FFFFFF;
 }
 
-#mdpOublie {
-	padding-left: 40px;
-	font-size: 110%;
-}
-
 #footer {
 	bottom:0;
 	left:0;
 	height:100px;
+}
+
+#erreur-nom {
+	color: red;
+	margin-left: 1em;
+	display: none;
 }
