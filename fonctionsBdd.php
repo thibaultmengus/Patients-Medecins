@@ -39,7 +39,7 @@ class fonctionsBdd
      */
     public function connexion($email, $mdp)
     {
-        $data = $this->sendRequest('SELECT idPersonne, mail, password, nom, prenom FROM Personne WHERE mail = :inputEmail');
+        $requete = $this->sendRequest('SELECT idPersonne, mail, password, nom, prenom FROM Personne WHERE mail = :inputEmail');
         $requete->bindValue(':inputEmail', htmlspecialchars($email));
         $data = $this->execute($requete);
         
