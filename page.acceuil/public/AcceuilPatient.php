@@ -17,13 +17,19 @@
 
 
 <?php 
-require '../src/Date/Month.php';
-$month = new  Prog\Date\Month($_GET['month']?? null,$_GET['year']?? null);
+require '../src/Calendar/Month.php';
+require '../src/Calendar/Events.php';
+$events = new Calendar\Events();
+$month = new  Calendar\Month($_GET['month']?? null,$_GET['year']?? null);
 $start = $month->getStartingDay();
+
 if ($month->getStartingDay()->format('D') === 'Mon')
   $start = $start->format('N') === '1' ? $start : $month->getStartingDay(); 
 else
   $start = $start->format('N') === '1' ? $start : $month->getStartingDay()->modify('last monday');
+$weeks = $month->getWeeks();
+$end = (clone $start)->modify('+'. (6 + 7 * ($weeks +1)). ' days');
+$events = $events->getEventsBetween($start,$end);
 ?>
 
 
@@ -40,9 +46,9 @@ else
 </div>
 
 
-<table class="calendar__table calendar__table--<?= $month->getWeeks();?>weeks">
+<table class="calendar__table calendar__table--<?= $weeks;?>weeks">
 
-  <?php for ($i = 0; $i < $month->getWeeks();$i++): ;?>
+  <?php for ($i = 0; $i < $weeks;$i++): ;?>
 
     <tr>
 

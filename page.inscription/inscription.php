@@ -2,12 +2,11 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../entete/entete.css">
-	<link rel="stylesheet" type="text/css" href="../menu_deroulant/menu_deroulant.css">
-	<link rel="stylesheet" type="text/css" href="css/board.css">
-	<link rel="stylesheet" type="text/css" href="css/button.css">
-	<link rel="stylesheet" type="text/css" href="css/page_creation_fiche.css">
-	<link rel="stylesheet" type="text/css" href="../user_dropdown/user_menu.css">
+	<link rel="stylesheet" type="text/css" href="../css/entete.css">
+	<link rel="stylesheet" type="text/css" href="../css/menu_deroulant.css">
+	<link rel="stylesheet" type="text/css" href="../css/board.css">
+	<link rel="stylesheet" type="text/css" href="../css/button.css">
+	<link rel="stylesheet" type="text/css" href="../css/page_creation_personne.css">
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 	<title>Inscription</title>
@@ -45,7 +44,7 @@
 					<table class="table table-responsive">
 						<thead>
 							<tr>
-								<th>Type de compte</th>
+								<th></th>
 								<th>Oui</th>
 								<th>Non</th>
 							</tr>
@@ -54,136 +53,26 @@
 							<form>
 								<tr>
 									<td>
-										Créer une fiche
+										Médecin ?
 									</td>
 									<td>
 										<div class="radio">
-										<label><input type="radio" name="optCreerFiche" value=1 ></label>
+										<label><input type="radio" name="inscriptionMedecin" value=1 ></label>
 										</div>
 									</td>
 									<td>
 										<div class="radio">
-											<label><input type="radio" name="optCreerFiche" value=2 ></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Modifier une fiche
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierFiche" value=1></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierFiche" value=2></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Clôturer une fiche
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optCloturerFiche" value=1></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optCloturerFiche" value=2></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Consulter une fiche
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optConsulterFiche" value=1></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optConsulterFiche" value=2></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Modifier un suivi
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierSuivi" value=1></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierSuivi" value=2></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Créer un compte
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optCreerCompte" value=1></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optCreerCompte" value=2></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Modifier un compte
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierCompte" value=1 ></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierCompte" value=2 ></label>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Modifier site
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierSite" value=1 ></label>
-										</div>
-									</td>
-									<td>
-										<div class="radio">
-											<label><input type="radio" name="optModifierSite" value=2 ></label>
+											<label><input type="radio" name="inscriptionMedecin" value=2 ></label>
 										</div>
 									</td>
 								</tr>
 							</form>
 						</tbody>
 					</table>
-
 					<div id="buttonConnexion">
 						<input type="submit" value="Créer" >
 	       			</div>
 				</form>
-
-
-
-
 			</div>
 		</div>
 	</div>
