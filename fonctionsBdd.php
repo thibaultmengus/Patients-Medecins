@@ -57,6 +57,15 @@ class fonctionsBdd
             return false;
     }
 	
+	public function rechercheMedecin($nom, $specialite, $ville)
+	{
+		$requete = $this->sendRequest('SELECT M.nom, M.prenom, S.specialite, M.adresse, M.codePostal, M.ville FROM Personne P JOIN Medecin M ON M.idMedecin=P.idPersonne JOIN Specialite S ON M.idSpecialite=S.idSpecialite WHERE M.nom LIKE "%:nom%" AND S.specialite LIKE "%:specialite%" AND M.ville LIKE "%:ville%"')
+        $requete->bindValue(':nom', $nom);
+        $requete->bindValue(':specialite', $specialite);
+        $requete->bindValue(':ville', $ville);
+		return $this->execute($requete);
+	}
+	
 	/**
      * @param $idMedecin ID du médecin du rendez-vous pris
      * @param $creneauHoraire Créneau horaire du rendez-vous pris
