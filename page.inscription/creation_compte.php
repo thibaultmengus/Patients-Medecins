@@ -10,10 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="../user_dropdown/user_menu.css">
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-	<title>Créer un compte</title>
+	<title>CrÃ©er un compte</title>
 	<link rel="icon" href="img/logo_trans.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 </head>
+
 <body>
 	<?php
 		include '../entete/entete.html';
