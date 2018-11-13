@@ -1,15 +1,23 @@
 <!-- Menu Déroulant -->
 <html>
+<?php
+        $lien = '..\page.connexion\formulaireConnexion.php';
+        session_start();
+        if($_SESSION['estMedecin'])
+            $lien = '..\page.medecin\accueil.php';
+        else
+            $lien = '..\page.patient\acceuil.php';
+?>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="./menu_deroulant.css" media="all"/>
+<link rel="stylesheet" type="text/css" href=".\menu_deroulant.css" media="all"/>
 </head>
 <body>
 
 	<nav>
 		<label for="menu-mobile" class="menu-mobile">Menu</label>
 		<input type="checkbox" id="menu-mobile" role="button">
-		<img src="../../logoSite.ico" alt="Logo medecin patient" class="bloc1">
+		<img href="<?php echo $lien; ?>" src="../logoSite.ico" alt="Logo medecin patient" class="bloc1">
 		<ul class="bloc2">
 			<li class="accueil"> <a href="#">Accueil / Dashboard</a> 
 				<!-- <ul class="sousmenu"> -->
