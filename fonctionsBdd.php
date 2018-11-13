@@ -22,6 +22,16 @@ class fonctionsBdd
     }
 
     /**
+     * @param $requete Requete à envoyer à la BDD
+     * retourne le résultat de la requête
+     */
+    public function execute($requete)
+	{
+		$requete->execute();
+        return $requete->fetch(PDO::FETCH_ASSOC);
+	}
+	
+    /**
      * @param $email adresse mail saisie par l'utilisateur qui veut se connecter
      * @param $mdp mot de passe saisie par l'utilisateur qui veut se connecter
      * retourne true si l'identifiant et le mot de passe entrés correspondent et affecte la variable de
@@ -29,16 +39,14 @@ class fonctionsBdd
      */
     public function connexion($email, $mdp)
     {
-        $requete = $this->bdd->prepare('SELECT idPersonne, mail, password, nom, prenom FROM Personne WHERE mail = :inputEmail');
+        $requete = $this->sendRequest('SELECT idPersonne, mail, password, nom, prenom FROM Personne WHERE mail = :inputEmail');
         $requete->bindValue(':inputEmail', htmlspecialchars($email));
-        $requete->execute();
-        $data = $requete->fetch(PDO::FETCH_ASSOC);
+        $data = $this->execute($requete);
         
         if ($data['password'] == $mdp) { //rajouter le md5 après!
             $requete = $this->bdd->prepare('SELECT idMedecin FROM Medecin WHERE idMedecin = :idPersonne');
             $requete->bindValue(':idPersonne', $data['idPersonne']);
-            $requete->execute();
-            $data2 = $requete->fetch(PDO::FETCH_ASSOC);
+			$data2 = $this->execute($requete);
             $_SESSION['estMedecin'] = ! empty($data2['idMedecin']);
             $_SESSION['estConnecte'] = true;
             $_SESSION['identifiant'] = $data['nom'] . ' ' . $data['prenom'];

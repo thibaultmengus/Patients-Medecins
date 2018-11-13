@@ -10,37 +10,61 @@
 	<link rel="stylesheet" type="text/css" href="../user_dropdown/user_menu.css">
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-	<title>Inscription</title>
+	<title>Cr�er un compte</title>
 	<link rel="icon" href="img/logo_trans.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 </head>
 <body>
+	<?php
+		include '../entete/entete.html';
+		include '../menu_deroulant/menu_deroulant.html';
+		include 'fonctionsBDDCreationCompte.php';
+	
+        session_start();
+        print_r($_SESSION);
+		$model = new Model();
+		$model->entrePage();
+		
+		include '../user_dropdown/user_menu.php';
+	?>
+
+
 	<h2 id="creer" class="text-center col-lg-offset-3 col-lg-6">Créer un compte</h2>
 
 	<div class="row board-container col-lg-offset-3 col-lg-6">
 		<div class="container-fluid">
 			<div id="board">
-				<form method="post" action="inscription.php">
+				<?php
+					$model->creerCompte();
+					print_r($_POST);
+					//$model->testCombo();
+					// value="<?php if(isset($_POST['inputId'])) echo $_POST['inputId']
+				?>
+				<form method="post" action="creation_compte.php">
 					<div class="form-group">
-				    	<label for="inputIdentifiant">Adresse mail</label>
-				    	<input type="text" class="form-control" id="inputIdentifiant" name="inputIdentifiant" >
+				    	<label for="inputId">Identifiant :</label>
+				    	<input type="text" class="form-control" id="inputId" name="inputId" >
 					</div>
 					<div class="form-group">
-				    	<label for="inputPassword">Mot de passe</label>
-				    	<input type="text" class="form-control" name="inputPassword" >
+				    	<label for="inputMdp">Mot de passe :</label>
+				    	<input type="text" class="form-control" name="inputMdp" >
 					</div>
 					<div class="form-group">
-				    	<label for="inputConfirmPassword">Confirmer mot de passe</label>
-				    	<input type="text" class="form-control" name="inputConfirmPassword" >
+				    	<label for="inputMdpConf">Confirmer mot de passe :</label>
+				    	<input type="text" class="form-control" name="inputMdpConf" >
 					</div>
 					<div class="form-group">
-				    	<label for="inputNom">Nom</label>
+				    	<label for="inputNom">Nom :</label>
 				    	<input type="text" class="form-control" name="inputNom" >
 					</div>
 					<div class="form-group">
-				    	<label for="inputPrenom">Prénom</label>
+				    	<label for="inputPrenom">Prénom :</label>
 				    	<input type="text" class="form-control" name="inputPrenom" >
 					</div>
+
+
+
+
 
 					<table class="table table-responsive">
 						<thead>
