@@ -135,11 +135,11 @@ class fonctionsBdd
         $requete_personne = $this->prepare("INSERT INTO personne(mail,password,nom,prenom,telephone) VALUES (:mail,:password,:nom,:prenom,:telephone)");
 
         if (isset($tab['mail']) && isset($tab['password']) && isset($tab['nom']) && isset($tab['prenom']) && isset($tab['telephone'])){
-            $requete_personne->bindValue('mail',$tab['mail']);
-            $requete_personne->bindValue('password',$tab['password']);
-            $requete_personne->bindValue('nom',$tab['nom']);
-            $requete_personne->bindValue('prenom',$tab['prenom']);
-            $requete_personne->bindValue('telephone',$tab['telephone']);
+            $requete_personne->bindValue('mail',htmlspecialchars($tab['mail']));
+            $requete_personne->bindValue('password',htmlspecialchars($tab['password']));
+            $requete_personne->bindValue('nom',htmlspecialchars($tab['nom']));
+            $requete_personne->bindValue('prenom',htmlspecialchars($tab['prenom']));
+            $requete_personne->bindValue('telephone',htmlspecialchars($tab['telephone']));
 
             $requete_reponse_personne = $this->execute();
         }
@@ -159,7 +159,10 @@ class fonctionsBdd
 
     public function editInfo($tab){
         $requete_update = "UPDATE personne SET mail = :mail  ,nom = :nom, prenom = :prenom, telephone = :telephone WHERE idPersonne = $tab['idPersonne']";
-        $requete_update->bindValue(':mail',editMail($tab['mail']) );
+        $requete_update->bindValue(':mail',editMail(htmlspecialchars($tab['mail'])) );
+        $requete_update->bindValue(':mail',editNom(htmlspecialchars($tab['mail'])) );
+        $requete_update->bindValue(':mail',editPrenom(htmlspecialchars($tab['mail'])) );
+        $requete_update->bindValue(':mail',editTelephone(htmlspecialchars($tab['mail'])) );
 
     }
 
