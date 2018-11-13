@@ -29,10 +29,10 @@ class fonctionsBdd
      */
     public function connexion($email, $mdp)
     {
-        $requete = $this->bdd->prepare('SELECT idPersonne, mail, password, nom, prenom FROM Personne WHERE mail = :inputEmail');
-        $requete->bindValue(':inputEmail', htmlspecialchars($email));
-        $requete->execute();
-        $data = $requete->fetch(PDO::FETCH_ASSOC);
+            $requete = $this->bdd->prepare('SELECT idPersonne, mail, password, nom, prenom FROM Personne WHERE mail = :inputEmail');
+            $requete->bindValue(':inputEmail', htmlspecialchars($email));
+            $requete->execute();
+            $data = $requete->fetch(PDO::FETCH_ASSOC);
         
         if ($data['password'] == $mdp) { //rajouter le md5 après!
             $requete = $this->bdd->prepare('SELECT idMedecin FROM Medecin WHERE idMedecin = :idPersonne');
