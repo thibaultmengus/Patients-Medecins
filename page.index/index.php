@@ -16,7 +16,6 @@
   
   <body>
   <?php session_start();
-  print_r($_SESSION);
   ?>
 
   <a href="..\page.connexion\formulaireConnexion.php" class="Connexion" div="Connexion">Connexion </a>
