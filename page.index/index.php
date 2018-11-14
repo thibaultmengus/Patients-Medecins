@@ -20,7 +20,7 @@
 
   <a href="..\page.connexion\formulaireConnexion.php" class="Connexion" div="Connexion">Connexion </a>
 
-  <a href="..\page.inscription\creation_compte.php" class="Inscription" div="Inscription">Inscription </a>
+  <a href="..\page.inscription\inscription.php" class="Inscription" div="Inscription">Inscription </a>
 	
 
   <div id="conteneur">    
