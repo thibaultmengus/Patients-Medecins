@@ -19,6 +19,8 @@ require '../views/header.php';
 //var_dump($events);
 ?>
 
+<div class="Calendar">
+  
 
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
 
@@ -26,8 +28,8 @@ require '../views/header.php';
   <h1><?= $month->toString();?></h1>
   <div>
     
-    <a href="./AcceuilPatient.php?month=<?= $month->previousMonth()->month;?>&year=<?= $month->previousMonth()->year;?>" class="btn btn-primary">&lt;</a>
-    <a href="./AcceuilPatient.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year;?>" class="btn btn-primary">&gt;</a>
+    <a href="./AccueilPatient.php?month=<?= $month->previousMonth()->month;?>&year=<?= $month->previousMonth()->year;?>" class="btn btn-primary">&lt;</a>
+    <a href="./AccueilPatient.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year;?>" class="btn btn-primary">&gt;</a>
   </div>
 
 </div>
@@ -72,5 +74,8 @@ require '../views/header.php';
   
  
 </table>
+
+<a href="../public/add.php" class="calendar__button"> + </a>
+</div>
 
 <?php require '../views/footer.php';  ?>

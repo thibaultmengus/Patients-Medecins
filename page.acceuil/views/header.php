@@ -12,5 +12,5 @@
 
 <nav class="navbar navbar-dark bg-primary mb-3">
 
-  <a href="/AcceuilPatient.php" class="navbar-brand">Mes Rendez-Vous</a>
+  <a href="../public/AccueilPatient.php" class="navbar-brand">Mes Rendez-Vous</a>
 </nav>
