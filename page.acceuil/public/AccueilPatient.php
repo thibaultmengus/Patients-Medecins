@@ -19,6 +19,8 @@ require '../views/header.php';
 //var_dump($events);
 ?>
 
+<div class="Calendar">
+  
 
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
 
@@ -76,5 +78,8 @@ require '../views/header.php';
   
  
 </table>
+
+<a href="../public/add.php" class="calendar__button"> + </a>
+</div>
 
 <?php require '../views/footer.php';  ?>

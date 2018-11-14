@@ -18,7 +18,7 @@ require_once '../fonctionsUtiles.inc.php';
 session_start();
 $formulaire = '
 <div  class="text-center">
-    <img id="logo" src="img/logoSite.ico" class="rounded" alt="...">
+    <a href="..\page.index\index.php" > <img id="logo" src="img/logoSite.ico" class="rounded" alt="..."> </a>
 </div>
 <h2 id="session" class="text-center col-lg-offset-3 col-lg-6">Ouvrir une session</h2>
 <div class="container-fluid">
