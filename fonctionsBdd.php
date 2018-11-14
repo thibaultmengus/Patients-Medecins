@@ -27,10 +27,13 @@ class fonctionsBdd
      * @param $requete Requete à envoyer à la BDD
      * retourne le résultat de la requête
      */
-    public function execute($requete)
+    public function execute($requete, $hasMultiplesLines = false)
 	{
 		$requete->execute();
-        return $requete->fetch(PDO::FETCH_ASSOC);
+        if ($hasMultiplesLines)
+            return $requete->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $requete->fetch(PDO::FETCH_ASSOC);
 	}
 	
     /**
@@ -114,15 +117,14 @@ class fonctionsBdd
      */
 	public function consulteRendezVousPatient($start, $end)
 	{
-		$requete = $this->bdd->prepare('SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne AND creneauHoraire IS BETWEEN :start AND :end');
+		$requete = $this->bdd->prepare("SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne");// AND creneauHoraire BETWEEN \':start\' AND \':end\'");
 		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
-		$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
-		$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
-        debug_to_console($_SESSION);
-        debug_to_console('SELECT * FROM consultationPatient WHERE idPersonne='.$_SESSION['idPersonne'].' AND creneauHoraire IS BETWEEN '.$start->format("Y-m-d H:i:s").' AND '.$end->format("Y-m-d H:i:s"));
-		return $this->execute($requete);
+		//$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
+		//$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
+		$ret = $this->execute($requete, true);
+        return $ret;
 	}
-	
+    	
 	/**
      * @param $creneauHoraire Créneau horaire du rendez-vous à ajouter
      * Ajoute un rendez-vous pour le médecin connecté
