@@ -24,18 +24,17 @@ $formulaire = '
 <div class="container-fluid">
     <div class="row board-container col-lg-offset-3 col-lg-6 col-xs-13">
         <div id="board">
-            <form method="POST" action="formulaireConnexion.php">
+            <form method="GET" action="formulaireConnexion.php">
             <div class="form-group " >
                 <label for="inputEmail"></label>
                     <input name="inputEmail" type="text" class="form-control" id="inputEmail"
-                    value="';if(isset($_POST['inputEmail'])) $formulaire = $formulaire . $_POST['inputEmail'];
+                    value="'; if(isset($_GET['inputEmail'])) $formulaire = $formulaire . $_GET['inputEmail'];
                     else $formulaire = $formulaire . "Adresse mail";
-$formulaire = $formulaire . '" ><span></span>
+                    $formulaire = $formulaire . '" required>
 		    </div>
 			<div class="form-group">
 			     <label for="inputPassword"></label>
-				    <input name="inputPassword" type="text" class="form-control" id="inputPassword"
-                    onclick="javascript:this.value = \'\';javascript:this.type=\'password\'" value="Mot de passe">
+				 <input name="inputPassword" type="text" class="form-control" id="inputPassword" value="Mot de passe" required>
 			</div>
 			<div class="form-check">
 		    </div>
@@ -50,34 +49,39 @@ $formulaire = $formulaire . '" ><span></span>
 </div>';
 
 // Si l'utilsateur arrive pour la première fois sur la page, on lui propose le formulaire de connexion
-if (! isset($_POST['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
+if (! isset($_GET['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
     echo $formulaire;
-
-} else {   
+}
+else {   
     // S'il est déjà connecté, on redirige l utilisateur
     if(isset($_SESSION['estConnecte'])) {
-        header('Location: ../page.patient/public/accueil.php');
-        exit;
-}
-    
-// Si le formulaire n'est pas bien rempli (champs vide, ou variable égale à null
-if (! formulaireBienRempli($_POST)) {
-        echo $formulaire . '<script> alert("Veuillez remplir tous les champs pour vous connecter") </script>';
-        
-    } else {
-        $bdd = new fonctionsBdd();
-        
-        if ($bdd->connexion($_POST['inputEmail'], $_POST['inputPassword'])) {
+        if($_SESSION['estMedecin']) {
+            header('Location: ../page.medecin/public/accueil.php');
+            exit;
+        }
+        else {
             header('Location: ../page.patient/public/accueil.php');
-			exit;
-        } else {
-            echo $formulaire . '<script> alert("Le mot de passe ou l\'identifiant entré n\'est pas correcte.") </script>';
+            exit;
+        }
+    }
+    
+    // Si le formulaire n'est pas bien rempli (champs vide, ou variable égale à null)
+    if (! formulaireBienRempli($_GET)) {
+        echo $formulaire . '<script> alert("Veuillez remplir tous les champs pour vous connecter") </script>';
+    }
+    else {
+        $bdd = new fonctionsBdd();
+        if($bdd->connexion($_GET['inputEmail'], $_GET['inputPassword'])) {
+            if($_SESSION['estMedecin']) {
+                header('Location: ../page.medecin/public/accueil.php');
+                exit;
+            }
+            else {
+                header('Location: ../page.patient/public/accueil.php');
+                exit;
+            }
         }
     }
 }
 ?>
 </body>
-
-
-
-				    		   

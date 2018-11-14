@@ -3,19 +3,19 @@ $(document).ready(function() {
 	// Lorsque l'utilisateur clique sur le champ Adresse mail,
 	// si sa valeur est égale à 'Adresse mail' sa valeur devient vide
 	$('#inputEmail').click(function(event) {
+		$('#inputEmail').attr('type', 'email');
 		var mail = $('#inputEmail').val();
 		if(mail == 'Adresse mail') {
 			$('#inputEmail').attr('value', '');
-			$('#inputEmail').attr('type', 'email');
 		}
 	});
 	// Même chose qu'en haut avec l'évenement déclencheur keyUp
 	// (si l'utilisateur navigue avec tab et non avec le click de la souris)
 	$('#inputEmail').keyup(function(event) {
+		$('#inputEmail').attr('type', 'email');
 		var mail = $('#inputEmail').val();
 		if(mail == 'Adresse mail') {
 			$('#inputEmail').attr('value', '');
-			$('#inputEmail').attr('type', 'email');
 		}
 	});
 	
