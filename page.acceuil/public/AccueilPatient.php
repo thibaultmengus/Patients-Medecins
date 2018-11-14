@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -17,10 +18,11 @@
 
 
 <?php 
+session_start();
 require '../src/Calendar/Month.php';
 require '../src/Calendar/Events.php';
 $events = new Calendar\Events();
-$month = new  Calendar\Month($_GET['month'] ?? null,$_GET['year'] ?? null);
+$month = new  Calendar\Month($_GET['month']?? null,$_GET['year']?? null);
 $start = $month->getStartingDay();
 
 if ($month->getStartingDay()->format('D') === 'Mon')
@@ -30,6 +32,8 @@ else
 $weeks = $month->getWeeks();
 $end = (clone $start)->modify('+'. (6 + 7 * ($weeks +1)). ' days');
 $events = $events->getEventsBetween($start,$end);
+var_dump($_SESSION);
+var_dump($events);
 ?>
 
 
@@ -53,15 +57,31 @@ $events = $events->getEventsBetween($start,$end);
     <tr>
 
       <?php foreach($month->days as $k => $day):
-        $date =(clone $start)->modify("+".($k +$i *7)."days")
-        ?>
+        $date =(clone $start)->modify("+".($k +$i *7)."days");
+        ?> 
     <td class="<?= $month->withinMonth($date) ? '' : 'calendar__othermonth';?>">
       <?php if ($i ===0):?>
         <div class="calendar__weekday"><?= $day;?></div>
       <?php endif;?>
       <div class="calendar__day"><?= $date->format('d');?></div>
+
+
+
+
+      <?php
+      $dateStr = $date->format('Y-m-d');
+      foreach ($events as $event):
+        if (strtok($event['creneauHoraire'],' ') == $dateStr):
+         ?>
+         <div class="calendar__event">
+          <?=strtok(' ')?> - <?= $event['adresse'];?>
+         </div>
+         <?php endif; ?>
+      <?php endforeach;?>
+
+      
     </td>
-  <?php endforeach;?>
+     <?php endforeach;?>
       
     </tr>
 

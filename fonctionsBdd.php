@@ -1,5 +1,7 @@
 <?php
 
+require_once 'fonctionsUtiles.inc.php';
+
 class fonctionsBdd
 {
     
@@ -25,10 +27,13 @@ class fonctionsBdd
      * @param $requete Requete à envoyer à la BDD
      * retourne le résultat de la requête
      */
-    public function execute($requete)
+    public function execute($requete, $hasMultiplesLines = false)
 	{
 		$requete->execute();
-        return $requete->fetch(PDO::FETCH_ASSOC);
+        if ($hasMultiplesLines)
+            return $requete->fetchAll(PDO::FETCH_ASSOC);
+        else
+            return $requete->fetch(PDO::FETCH_ASSOC);
 	}
 	
     /**
@@ -48,6 +53,8 @@ class fonctionsBdd
             $requete->bindValue(':idPersonne', $data['idPersonne']);
 			$data2 = $this->execute($requete);
             $_SESSION['estMedecin'] = ! empty($data2['idMedecin']);
+            if($_SESSION['estMedecin'])
+                $_SESSION['idMedecin'] = $data2['idMedecin'];
             $_SESSION['estConnecte'] = true;
             $_SESSION['idPersonne'] = $data['idPersonne'];
             $_SESSION['identifiant'] = $data['nom'] . ' ' . $data['prenom'];
@@ -110,13 +117,14 @@ class fonctionsBdd
      */
 	public function consulteRendezVousPatient($start, $end)
 	{
-		$requete = $this->bdd->prepare('SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne AND creneauHoraire IS BETWEEN :start AND :end');
+		$requete = $this->bdd->prepare("SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne");// AND creneauHoraire BETWEEN \':start\' AND \':end\'");
 		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
-		$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
-		$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
-		return $this->execute($requete);
+		//$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
+		//$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
+		$ret = $this->execute($requete, true);
+        return $ret;
 	}
-	
+    	
 	/**
      * @param $creneauHoraire Créneau horaire du rendez-vous à ajouter
      * Ajoute un rendez-vous pour le médecin connecté
@@ -248,9 +256,52 @@ class fonctionsBdd
         }
         else return false;
     }
-/*
+
+
+
     public function editInfoMedecin($tab){
-            $req_update = $this->bdd->prepare("UPDATE `medecin` SET `idMedecin`=[value-1],`adresse`=[value-2],`codePostal`=[value-3],`ville`=[value-4],`idSpecialite`=[value-5] WHERE 1");
-        }*/
+            $requete_update = $this->bdd->prepare("UPDATE medecin SET  adresse = :adresse , codePostal = :codePostal , ville = :ville WHERE idMedecin = :medecin ");
+            $requete_update->bindValue(':medecin',htmlspecialchars($_SESSION['idMedecin']));
+        $requete_update->bindValue(':adresse',editCodePostal(htmlspecialchars($tab['adresse']) ));
+        $requete_update->bindValue(':codePostal',editCodePostal( htmlspecialchars($tab['codePostal']) ));
+        $requete_update->bindValue(':ville',editVille(htmlspecialchars($tab['ville'])) );
+        }
+
+    public function editAdresse($tab){
+        $requete_update = $this->bdd->prepare("UPDATE medecin SET adresse = :adresse WHERE idMedecin = :medecin");
+        $requete_update->bindValue(':medecin',htmlspecialchars($_SESSION['idMedecin']));
+
+        if (isset($tab['adresse']) ){
+            $requete_update->bindValue(':adresse',$tab['adresse']);
+            $requete_update->execute();
+            return true;
+        }
+        else return false;
+    }
+
+    public function editCodePostal($tab){
+        $requete_update = $this->bdd->prepare("UPDATE medecin SET codePostal = :codePostal WHERE idMedecin = :medecin");
+        $requete_update->bindValue(':medecin',htmlspecialchars($_SESSION['idMedecin']));
+
+        if (isset($tab['codePostal']) ){
+            $requete_update->bindValue(':codePostal',$tab['codePostal']);
+            $requete_update->execute();
+            return true;
+        }
+        else return false;
+    }
+
+    public function editVille($tab){
+        $requete_update = $this->bdd->prepare("UPDATE medecin SET ville = :ville WHERE idMedecin = :medecin");
+        $requete_update->bindValue(':medecin',htmlspecialchars($_SESSION['idMedecin']));
+
+        if (isset($tab['ville']) ){
+            $requete_update->bindValue(':ville',$tab['ville']);
+            $requete_update->execute();
+            return true;
+        }
+        else return false;
+    }
+
 }
 ?>
