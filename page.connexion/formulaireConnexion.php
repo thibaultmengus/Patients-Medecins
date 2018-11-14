@@ -56,7 +56,7 @@ if (! isset($_POST['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
 } else {   
     // S'il est déjà connecté, on redirige l utilisateur
     if(isset($_SESSION['estConnecte'])) {
-        header('Location: ../page.accueil/public/AccueilPatient.php');
+        header('Location: ../page.patient/public/accueil.php');
         exit;
 }
     
@@ -68,7 +68,7 @@ if (! formulaireBienRempli($_POST)) {
         $bdd = new fonctionsBdd();
         
         if ($bdd->connexion($_POST['inputEmail'], $_POST['inputPassword'])) {
-            header('Location: ../page.accueil/public/AccueilPatient.php');
+            header('Location: ../page.patient/public/accueil.php');
 			exit;
         } else {
             echo $formulaire . '<script> alert("Le mot de passe ou l\'identifiant entré n\'est pas correcte.") </script>';
