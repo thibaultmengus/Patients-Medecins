@@ -70,6 +70,15 @@ class fonctionsBdd
 		return $this->execute($requete, true);
 	}
 	
+	public function ajouteRendezVous($idMedecin, $creneauHoraire)
+	{
+		$requete = $this->bdd->prepare('INSERT INTO consultation VALUES(:creneauHoraire, :idMedecin, :idPersonne)');
+		$requete->bindValue(':creneauHoraire', $creneauHoraire);
+        $requete->bindValue(':idMedecin', $idMedecin);
+		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
+        $this->execute($requete);
+	}
+	
 	public function rechercheMedecin($nom, $specialite, $ville)
 	{
 		$requete = $this->bdd->prepare('SELECT M.nom, M.prenom, S.specialite, M.adresse, M.codePostal, M.ville FROM Personne P JOIN Medecin M ON M.idMedecin=P.idPersonne JOIN Specialite S ON M.idSpecialite=S.idSpecialite WHERE M.nom LIKE "%:nom%" AND S.specialite LIKE "%:specialite%" AND M.ville LIKE "%:ville%"');
