@@ -32,6 +32,7 @@ else
 $weeks = $month->getWeeks();
 $end = (clone $start)->modify('+'. (6 + 7 * ($weeks +1)). ' days');
 $events = $events->getEventsBetween($start,$end);
+var_dump($_SESSION);
 var_dump($events);
 ?>
 
