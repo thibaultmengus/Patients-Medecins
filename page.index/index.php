@@ -35,7 +35,7 @@
       <p>Premier site de France en medecine </p>
     </div>
     
-    <p id="footer">Réaliser par The Crew</p>
+    <p id="footer">Réaliser par Enes, Thibaut, Pierrick, Paul, Alexis</p>
   </div>
   </body>
 </html>
