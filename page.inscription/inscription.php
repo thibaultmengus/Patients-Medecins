@@ -20,7 +20,7 @@
 <body>
 <?php
 require '../fonctionsBdd.php';
-require '../fonctionsUtiles.inc.php';
+require_once '../fonctionsUtiles.inc.php';
 $formulaire = '
 	<h2 id="creer" class="text-center col-lg-offset-3 col-lg-6">Créer un compte</h2>
 
