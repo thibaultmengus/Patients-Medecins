@@ -15,6 +15,8 @@
 </head>
   
   <body>
+  <?php session_start();
+  ?>
 
   <a href="..\page.connexion\formulaireConnexion.php" class="Connexion" div="Connexion">Connexion </a>
 
@@ -29,10 +31,10 @@
 
     <div id="contenu">
       <h2>Bienvenue sur Free Medecine !</h2>
-      <p>Premier site de France en medecine </p>
+      <p>Premier site de France en médecine </p>
     </div>
     
-    <p id="footer">Réaliser par The Crew</p>
+    <p id="footer">Réaliser par Enes, Thibaut, Pierrick, Paul, Alexis</p>
   </div>
   </body>
 </html>

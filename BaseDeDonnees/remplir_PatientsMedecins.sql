@@ -23,6 +23,20 @@ INSERT INTO Medecin(idMedecin, adresse, codePostal, ville)
 	FROM personne WHERE mail="etonfaittournerlesserviettes@gmail.com";
 
 INSERT INTO Consultation(idMedecin, creneauHoraire)
-	SELECT idPersonne, '2018-11-11 12:30:00'
+	SELECT idPersonne, '2018-11-21 12:30:00'
 	FROM personne WHERE mail="jean.sartre@gmail.com";
-	
+	INSERT INTO Consultation(idMedecin, creneauHoraire)
+	SELECT idPersonne, '2018-11-23 13:30:00'
+	FROM personne WHERE mail="jean.sartre@gmail.com";
+INSERT INTO Consultation(idMedecin, creneauHoraire)
+	SELECT idPersonne, '2018-11-14 12:30:00'
+	FROM personne WHERE mail="jean.sartre@gmail.com";
+INSERT INTO Consultation(idMedecin, creneauHoraire)
+	SELECT idPersonne, '2018-11-14 12:30:00'
+	FROM personne WHERE mail="bastien.menot@gmail.com";
+INSERT INTO Consultation(idMedecin, creneauHoraire)
+	SELECT idPersonne, '2018-11-23 12:30:00'
+	FROM personne WHERE mail="jean.sartre@gmail.com";
+INSERT INTO Consultation(idMedecin, creneauHoraire)
+	SELECT idPersonne, '2018-11-25 12:30:00'
+	FROM personne WHERE mail="jean.sartre@gmail.com";

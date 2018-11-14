@@ -54,7 +54,7 @@ CREATE TABLE Consultation(
         creneauHoraire     Datetime NOT NULL ,
         idMedecin          Int NOT NULL ,
         idPersonne		   Int
-	,CONSTRAINT Consultation_PK PRIMARY KEY (creneauHoraire)
+	,CONSTRAINT Consultation_PK PRIMARY KEY (creneauHoraire, idMedecin)
 
 	,CONSTRAINT Consultation_Medecin_FK FOREIGN KEY (idMedecin) REFERENCES Medecin(idMedecin)
 	,CONSTRAINT Consultation_Personne_FK FOREIGN KEY (idPersonne) REFERENCES Personne(idPersonne)

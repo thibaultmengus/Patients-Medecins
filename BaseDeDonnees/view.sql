@@ -9,7 +9,7 @@ SELECT M.idMedecin, C.idPersonne, C.creneauHoraire, P.nom, P.prenom, S.specialit
 FROM Consultation C
 JOIN Medecin M ON C.idMedecin=M.idMedecin
 LEFT JOIN Personne P ON M.idMedecin=P.idPersonne
-JOIN Specialite S ON M.idSpecialite=S.idSpecialite
+LEFT JOIN Specialite S ON M.idSpecialite=S.idSpecialite
 WHERE C.idPersonne IS NOT NULL
 ;
 
@@ -17,7 +17,7 @@ CREATE OR REPLACE VIEW consultationMedecinOccupe AS
 SELECT M.idMedecin, C.creneauHoraire, P.nom, P.prenom, P.mail, P.telephone
 FROM Consultation C
 JOIN Medecin M ON C.idMedecin=M.idMedecin
-JOIN Personne P ON M.idMedecin=P.idPersonne
+JOIN Personne P ON C.idPersonne=P.idPersonne
 ;
 
 CREATE OR REPLACE VIEW consultationMedecinLibre AS
@@ -25,6 +25,6 @@ SELECT C.creneauHoraire, P.nom, P.prenom, S.specialite, M.adresse, M.codePostal,
 FROM Consultation C
 JOIN Medecin M ON C.idMedecin=M.idMedecin
 JOIN Personne P ON M.idMedecin=P.idPersonne
-JOIN Specialite S ON M.idSpecialite=S.idSpecialite
+LEFT JOIN Specialite S ON M.idSpecialite=S.idSpecialite
 WHERE C.idPersonne IS NULL
 ;
