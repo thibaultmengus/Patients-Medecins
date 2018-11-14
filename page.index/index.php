@@ -32,7 +32,7 @@
 
     <div id="contenu">
       <h2>Bienvenue sur Free Medecine !</h2>
-      <p>Premier site de France en medecine </p>
+      <p>Premier site de France en médecine </p>
     </div>
     
     <p id="footer">Réaliser par Enes, Thibaut, Pierrick, Paul, Alexis</p>
