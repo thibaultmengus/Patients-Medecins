@@ -1,6 +1,7 @@
 <?php
 
 namespace Calendar;
+require_once '../../fonctionsUtiles.inc.php';
 
 class Month {
 
@@ -48,10 +49,6 @@ class Month {
 	}
 
 
-	public function debug_to_console($data) {
-		echo "<script>console.log('Debug Objects:" . $data . "');</script>";
-	}
-
 	public function getWeeks() {
 			$start = $this->getStartingDay();
 			$end = (clone $start)->modify('+1 month -1 day');
@@ -59,7 +56,7 @@ class Month {
 			if($weeks < 0){
 				$weeks = 53 - intval($start->format('W'))+1;
 			}
-			$this->debug_to_console($start->format('D'));
+			debug_to_console($start->format('D'));
 			return $weeks;
 	}
 

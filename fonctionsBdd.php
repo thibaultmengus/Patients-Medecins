@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../fonctionsUtiles.inc.php';
+
 class fonctionsBdd
 {
     
@@ -116,6 +118,8 @@ class fonctionsBdd
 		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
 		$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
 		$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
+        debug_to_console($_SESSION);
+        debug_to_console('SELECT * FROM consultationPatient WHERE idPersonne='.$_SESSION['idPersonne'].' AND creneauHoraire IS BETWEEN '.$start->format("Y-m-d H:i:s").' AND '.$end->format("Y-m-d H:i:s"));
 		return $this->execute($requete);
 	}
 	
