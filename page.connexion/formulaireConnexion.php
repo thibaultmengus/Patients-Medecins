@@ -71,7 +71,7 @@ else {
     }
     else {
         $bdd = new fonctionsBdd();
-        if($bdd->connexion($_POST['inputEmail'], $_POST['inputPassword'])) {
+        if($bdd->connexion($_GET['inputEmail'], $_GET['inputPassword'])) {
             if($_SESSION['estMedecin']) {
                 header('Location: ../page.medecin/public/accueil.php');
                 exit;
@@ -80,8 +80,6 @@ else {
                 header('Location: ../page.patient/public/accueil.php');
                 exit;
             }
-        } else {
-            echo $formulaire . '<script> alert("Le mot de passe ou l\'identifiant entré n\'est pas correcte.") </script>';
         }
     }
 }
