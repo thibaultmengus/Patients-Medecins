@@ -151,35 +151,38 @@ class fonctionsBdd
 		return $this->execute($requete);
 	}
 	
-    public function inscription($tab){
-
-        $requete_personne = $this->bdd->prepare("INSERT INTO personne(mail,password,nom,prenom,telephone) VALUES (:mail,:password,:nom,:prenom,:telephone)");
-
-        if (isset($tab['mail']) && isset($tab['password']) && isset($tab['nom']) && isset($tab['prenom']) && isset($tab['telephone'])){
-            $requete_personne->bindValue('mail',htmlspecialchars($tab['mail']));
-            $requete_personne->bindValue('password',htmlspecialchars($tab['password']));
-            $requete_personne->bindValue('nom',htmlspecialchars($tab['nom']));
-            $requete_personne->bindValue('prenom',htmlspecialchars($tab['prenom']));
-            $requete_personne->bindValue('telephone',htmlspecialchars($tab['telephone']));
-
-            $requete_reponse_personne = $this->execute();
-        }
-        if($tab["CaseMedecin"]){
-            $requete_medecin = $this->bdd->prepare("INSERT INTO medecin(adresse,codePostal,ville) VALUES (:adresse,:codePostal,:ville)");
-
-            if (isset($tab['adresse']) && isset($tab['codePostal']) && isset($tab['ville'])){
-                $requete_medecin->bindValue('adresse',htmlspecialchars($tab['adresse']));
-                $requete_medecin->bindValue('codePostal',htmlspecialchars($tab['codePostal']));
-                $requete_medecin->bindValue('ville',htmlspecialchars($tab['ville']));
-
-                $requete_reponse_medecin = $this->execute();
+    public function inscription($tab) {
+        try {
+            // Dans tous les cas :
+            $requete_personne = $this->bdd->prepare('INSERT INTO Personne (mail, password, nom, prenom, telephone) VALUES (:mail, :password, :nom, :prenom, :telephone)');
+            $requete_personne->bindValue('mail',htmlspecialchars($tab['inputIdentifiant']));
+            $requete_personne->bindValue('password',htmlspecialchars($tab['inputPassword']));
+            $requete_personne->bindValue('nom',htmlspecialchars($tab['inputNom']));
+            $requete_personne->bindValue('prenom',htmlspecialchars($tab['inputPrenom']));
+            $requete_personne->bindValue('telephone',htmlspecialchars($tab['inputNumeroTelephone']));
+            $requete_reponse_personne = $this->execute($requete_personne);
+            // on récupère l'id Personne
+            $requete_getIdPersonne = $this->bdd->prepare('SELECT idPersonne FROM Personne WHERE mail = :mailCheck');
+            $requete_getIdPersonne->bindValue(':mailCheck', htmlspecialchars($tab['inputIdentifiant']));
+            $requete_getIdPersonne = $this->execute($requete_getIdPersonne);
+    
+            // S'il a coché la checkbox "est médecin" :
+            if($tab['inscriptionMedecin'] === "1") {
+                $requete_medecin = $this->bdd->prepare('INSERT INTO Medecin(idMedecin, adresse, codePostal, ville) VALUES (:idPersonne, :adresse, :codePostal, :ville)');
+                $requete_medecin->bindValue('adresse',htmlspecialchars($requete_getIdPersonne['idPersonne']));
+                $requete_medecin->bindValue('adresse',htmlspecialchars($tab['inputAdresse']));
+                $requete_medecin->bindValue('codePostal',htmlspecialchars($tab['inputCodePostal']));
+                $requete_medecin->bindValue('ville',htmlspecialchars($tab['inputVille']));
+                $requete_reponse_medecin = $this->bdd->execute();
             }
+            return true;
+        } catch (Exception $e) {
+            die('Erreur : impossible de se s\'inscrire.');
         }
-
     }
 
     public function editInfo($tab){
-        $requete_update = $this->bdd->prepare("UPDATE personne SET mail = :mail  ,nom = :nom, prenom = :prenom, telephone = :telephone WHERE idPersonne = :idPersonne");
+        $requete_update = $this->bdd->prepare("UPDATE Personne SET mail = :mail  ,nom = :nom, prenom = :prenom, telephone = :telephone WHERE idPersonne = :idPersonne");
         $requete_update->bindValue(':mail',editMail(htmlspecialchars($tab['mail'])) );
         $requete_update->bindValue(':nom',editNom(htmlspecialchars($tab['nom'])) );
         $requete_update->bindValue(':prenom',editPrenom(htmlspecialchars($tab['prenom'])) );
@@ -191,8 +194,8 @@ class fonctionsBdd
 
     //il faut verifier si le nouvel email existe deja dans la base
     public function editMail($tab){
-        $requete_update = $this->bdd->prepare("UPDATE personne SET prenom = :mail WHERE idPersonne = :idPersonne");
-        $req_check = $this->bdd->prepare("SELECT 'mail existe' FROM personne WHERE EXISTS (SELECT mail FROM personne where mail = :mail) limit 1");
+        $requete_update = $this->bdd->prepare("UPDATE Personne SET prenom = :mail WHERE idPersonne = :idPersonne");
+        $req_check = $this->bdd->prepare("SELECT 'mail existe' FROM Personne WHERE EXISTS (SELECT mail FROM Personne where mail = :mail) limit 1");
         $req_check->bindValue(":mail",$tab['mail']);
         $req_check->bindValue(':idPersonne',htmlspecialchars($_SESSION['idPersonne']));
 
@@ -215,7 +218,7 @@ class fonctionsBdd
     }
 
     public function editPrenom($tab){
-        $requete_update = $this->bdd->prepare("UPDATE personne SET prenom = :prenom WHERE idPersonne = :idPersonne");
+        $requete_update = $this->bdd->prepare("UPDATE Personne SET prenom = :prenom WHERE idPersonne = :idPersonne");
         $requete_update->bindValue(':idPersonne',htmlspecialchars($_SESSION['idPersonne']));
 
         if (isset($tab['prenom']) ){
@@ -227,7 +230,7 @@ class fonctionsBdd
     }
 
     public function editNom($tab){
-        $requete_update = $this->bdd->prepare("UPDATE personne SET nom = :nom WHERE idPersonne = :idPersonne");
+        $requete_update = $this->bdd->prepare("UPDATE Personne SET nom = :nom WHERE idPersonne = :idPersonne");
         $requete_update->bindValue(':idPersonne',htmlspecialchars($_SESSION['idPersonne']));
         if (isset($tab['nom']) ){
             $requete_update->bindValue(':nom',$tab['nom']);
@@ -239,7 +242,7 @@ class fonctionsBdd
 
 
     public function editTelephone($tab){
-        $requete_update = $this->bdd->prepare("UPDATE personne SET telephone = :telephone WHERE idPersonne = :idPersonne");
+        $requete_update = $this->bdd->prepare("UPDATE Personne SET telephone = :telephone WHERE idPersonne = :idPersonne");
         $requete_update->bindValue(':idPersonne',htmlspecialchars($_SESSION['idPersonne']));
         if (isset($tab['telephone']) ){
             $requete_update->bindValue(':telephone',$tab['telephone']);
