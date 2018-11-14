@@ -60,9 +60,9 @@ require '../views/header.php';
          ?>
 			<div class="calendar__event">
 				<?php if ($_SESSION['estMedecin'] === true):?>
-					<?=strtok(' ')?> - M. <?= $event['nom'];?> <?=$event['prenom'];?><br><?= $event['telephone'];?>
+					<?=substr($event['creneauHoraire'], 11, 5);?> - M. <?= $event['nom'];?> <?=$event['prenom'];?><br><?= $event['telephone'];?>
 				<?php else: ?>
-					<?=strtok(' ')?> - M. <?= $event['nom'];?><br><?= $event['adresse'];?> <?= $event['codePostal'];?>
+					<?=substr($event['creneauHoraire'], 11, 5);?> - M. <?= $event['nom'];?><br><?= $event['adresse'];?> <?= $event['codePostal'];?>
 				<?php endif; ?>
 			</div>
          <?php endif; ?>
