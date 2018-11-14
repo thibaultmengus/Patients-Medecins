@@ -9,7 +9,7 @@ SELECT M.idMedecin, C.idPersonne, C.creneauHoraire, P.nom, P.prenom, S.specialit
 FROM Consultation C
 JOIN Medecin M ON C.idMedecin=M.idMedecin
 LEFT JOIN Personne P ON M.idMedecin=P.idPersonne
-JOIN Specialite S ON M.idSpecialite=S.idSpecialite
+LEFT JOIN Specialite S ON M.idSpecialite=S.idSpecialite
 WHERE C.idPersonne IS NOT NULL
 ;
 
@@ -25,6 +25,6 @@ SELECT C.creneauHoraire, P.nom, P.prenom, S.specialite, M.adresse, M.codePostal,
 FROM Consultation C
 JOIN Medecin M ON C.idMedecin=M.idMedecin
 JOIN Personne P ON M.idMedecin=P.idPersonne
-JOIN Specialite S ON M.idSpecialite=S.idSpecialite
+LEFT JOIN Specialite S ON M.idSpecialite=S.idSpecialite
 WHERE C.idPersonne IS NULL
 ;
