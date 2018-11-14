@@ -18,7 +18,7 @@
 <body>
 	<?php
 		include '../entete/entete.html';
-		include '../menu_deroulant/menu_deroulant.html';
+		include '../menu_deroulant/menu_deroulant.phtml';
 		include 'fonctionsBDDCreationCompte.php';
 	
         session_start();

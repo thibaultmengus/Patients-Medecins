@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +20,7 @@
 require '../src/Calendar/Month.php';
 require '../src/Calendar/Events.php';
 $events = new Calendar\Events();
-$month = new  Calendar\Month($_GET['month']?? null,$_GET['year']?? null);
+$month = new  Calendar\Month($_GET['month'] ?? null,$_GET['year'] ?? null);
 $start = $month->getStartingDay();
 
 if ($month->getStartingDay()->format('D') === 'Mon')
