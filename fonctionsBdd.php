@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../fonctionsUtiles.inc.php';
+require_once 'fonctionsUtiles.inc.php';
 
 class fonctionsBdd
 {

@@ -13,8 +13,8 @@
 </head>
 <body>
 <?php
-include '../fonctionsBdd.php';
-include '../fonctionsUtiles.inc.php';
+require_once '../fonctionsBdd.php';
+require_once '../fonctionsUtiles.inc.php';
 session_start();
 $formulaire = '
 <div  class="text-center">
