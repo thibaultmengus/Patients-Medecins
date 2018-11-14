@@ -26,8 +26,8 @@ require '../views/header.php';
   <h1><?= $month->toString();?></h1>
   <div>
     
-    <a href="./AcceuilPatient.php?month=<?= $month->previousMonth()->month;?>&year=<?= $month->previousMonth()->year;?>" class="btn btn-primary">&lt;</a>
-    <a href="./AcceuilPatient.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year;?>" class="btn btn-primary">&gt;</a>
+    <a href="./AccueilPatient.php?month=<?= $month->previousMonth()->month;?>&year=<?= $month->previousMonth()->year;?>" class="btn btn-primary">&lt;</a>
+    <a href="./AccueilPatient.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year;?>" class="btn btn-primary">&gt;</a>
   </div>
 
 </div>
@@ -54,11 +54,15 @@ require '../views/header.php';
       <?php
       $dateStr = $date->format('Y-m-d');
       foreach ($events as $event):
-        if (strtok($event['creneauHoraire'],' ') == $dateStr):
+		if (strtok($event['creneauHoraire'],' ') == $dateStr):
          ?>
-         <div class="calendar__event">
-          <?=strtok(' ')?> -  <a href="/event.php?id=<?= $event['id'];?>">M.  <?= $event['nom'];?><br><?= $event['adresse'];?> <?= $event['codePostal'];?>  </a>
-         </div>
+			<div class="calendar__event">
+				<?php if ($_SESSION['estMedecin'] === true):?>
+					<?=strtok(' ')?> - M. <?= $event['nom'];?> <?=$event['prenom'];?><br><?= $event['telephone'];?>
+				<?php else: ?>
+					<?=strtok(' ')?> - M. <?= $event['nom'];?><br><?= $event['adresse'];?> <?= $event['codePostal'];?>
+				<?php endif; ?>
+			</div>
          <?php endif; ?>
       <?php endforeach;?>
 

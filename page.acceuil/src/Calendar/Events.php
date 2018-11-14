@@ -14,11 +14,12 @@ class Events{
   */
 	public function getEventsBetween(\DateTime $start, \DateTime $end) {
 
-			$bdd = new \fonctionsBdd();
-
+		$bdd = new \fonctionsBdd();
+		If ($_SESSION['estMedecin'] === true)
+			$results = $bdd->consulteRendezVousMedecin();
+		else
 			$results = $bdd->consulteRendezVousPatient($start, $end);
-			return $results;
-
+		return $results;
 	}
 
 
