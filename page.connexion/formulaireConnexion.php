@@ -57,9 +57,9 @@ if (! isset($_POST['inputEmail']) && !isset($_SESSION['estConnecte']) ) {
     // S'il est déjà connecté, on redirige l utilisateur
     if(isset($_SESSION['estConnecte'])) {
         if($_SESSION['estMedecin'])
-            header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
+            header('Location: ../page.medecin/accueil.php');
         else
-            header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.patient/accueil.php');
+            header('Location: ../page.acceuil/public/AccueilPatient.php');
 }
     
 // Si le formulaire n'est pas bien rempli (champs vide, ou variable égale à null
@@ -71,9 +71,9 @@ if (! formulaireBienRempli($_POST)) {
         
         if ($bdd->connexion($_POST['inputEmail'], $_POST['inputPassword'])) {
             if($_SESSION['estMedecin'])
-                header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.medecin/accueil.php');
+                header('Location: ../page.medecin/accueil.php');
             else
-                header('Location: http://localhost/mesFichiersPHP/Patients-Medecins/page.patient/accueil.php');
+                header('Location: ../page.acceuil/public/AccueilPatient.php');
         } else {
             echo $formulaire . '<script> alert("Le mot de passe ou l\'identifiant entré n\'est pas correcte.") </script>';
         }
