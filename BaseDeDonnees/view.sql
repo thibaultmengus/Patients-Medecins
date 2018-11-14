@@ -17,7 +17,7 @@ CREATE OR REPLACE VIEW consultationMedecinOccupe AS
 SELECT M.idMedecin, C.creneauHoraire, P.nom, P.prenom, P.mail, P.telephone
 FROM Consultation C
 JOIN Medecin M ON C.idMedecin=M.idMedecin
-JOIN Personne P ON M.idMedecin=P.idPersonne
+JOIN Personne P ON C.idPersonne=P.idPersonne
 ;
 
 CREATE OR REPLACE VIEW consultationMedecinLibre AS
