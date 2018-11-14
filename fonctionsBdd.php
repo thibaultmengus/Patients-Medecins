@@ -64,6 +64,12 @@ class fonctionsBdd
             return false;
     }
 	
+	public function getMedecins()
+	{
+		$requete = $this->bdd->prepare('SELECT nom, prenom FROM viewMedecin');
+		return $this->execute($requete, true);
+	}
+	
 	public function rechercheMedecin($nom, $specialite, $ville)
 	{
 		$requete = $this->bdd->prepare('SELECT M.nom, M.prenom, S.specialite, M.adresse, M.codePostal, M.ville FROM Personne P JOIN Medecin M ON M.idMedecin=P.idPersonne JOIN Specialite S ON M.idSpecialite=S.idSpecialite WHERE M.nom LIKE "%:nom%" AND S.specialite LIKE "%:specialite%" AND M.ville LIKE "%:ville%"');
