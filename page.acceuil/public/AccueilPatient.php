@@ -1,22 +1,4 @@
 
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet"  href="./CSS/calendar.css">
-</head>
-
-<body>
-
-<nav class="navbar navbar-dark bg-primary mb-3">
-
-  <a href="/AcceuilPatient.php" class="navbar-brand">Mes Rendez-Vous</a>
-</nav>
-
-
 <?php 
 session_start();
 require '../src/Calendar/Month.php';
@@ -32,8 +14,9 @@ else
 $weeks = $month->getWeeks();
 $end = (clone $start)->modify('+'. (6 + 7 * ($weeks +1)). ' days');
 $events = $events->getEventsBetween($start,$end);
-var_dump($_SESSION);
-var_dump($events);
+require '../views/header.php';
+//var_dump($_SESSION);
+//var_dump($events);
 ?>
 
 
@@ -74,7 +57,7 @@ var_dump($events);
         if (strtok($event['creneauHoraire'],' ') == $dateStr):
          ?>
          <div class="calendar__event">
-          <?=strtok(' ')?> - <?= $event['adresse'];?>
+          <?=strtok(' ')?> -  <a href="/event.php?id=<?= $event['id'];?>">M.  <?= $event['nom'];?><br><?= $event['adresse'];?> <?= $event['codePostal'];?>  </a>
          </div>
          <?php endif; ?>
       <?php endforeach;?>
@@ -87,9 +70,7 @@ var_dump($events);
 
   <?php endfor;?>
   
-
+ 
 </table>
 
-
-</body>
-</html>
+<?php require '../views/footer.php';  ?>

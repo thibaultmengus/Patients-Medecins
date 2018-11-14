@@ -1,3 +1,9 @@
+
+.calendar {
+	position: relative;
+}
+
+
 .calendar__table {
 	width: 100%;
 	height: calc(100vh);
@@ -27,4 +33,16 @@
 }
 .calendar__day{
 	font-size: 1.3em;
+}
+
+.calendar__button {
+	display: block;
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	color: #FFF;
+	font-size: 30px;
+	background-color: #007bff;
+	border-radius: 50%;
 }
