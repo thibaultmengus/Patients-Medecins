@@ -11,11 +11,11 @@ render('header',['title' => 'Ajouter une Consultation']);
  <div class="container">
  	
  	<h1>Ajouter une consultation</h1>
- 	<form action="" method="post">
- 		<div class="form-control">
+ 	<form action="" method="post" class="form">
+ 		<div class="row">
  			
- 			<label for="">Titre</label>
- 			<input id="name" type="text" class="form-control" name="name">
+ 			<div class="col-sm-6"></div>
+
 
  		</div>
 

@@ -2,7 +2,6 @@
 <html>
 <?php
         $lien = '..\page.connexion\formulaireConnexion.php';
-        session_start();
         if($_SESSION['estMedecin'])
             $lien = '..\page.medecin\accueil.php';
         else
