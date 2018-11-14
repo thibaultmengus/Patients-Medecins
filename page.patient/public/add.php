@@ -1,8 +1,9 @@
 <?php 
 session_start();
+require_once '../../fonctionsBdd.php';
 require '../src/Calendar/bootsrap.php';
 
-
+$bdd = new \fonctionsBdd();
 render('header',['title' => 'Ajouter une Consultation']);
 
  ?>
@@ -11,7 +12,7 @@ render('header',['title' => 'Ajouter une Consultation']);
  <div class="container">
  	
  	<h1>Ajouter une consultation</h1>
- 	<form action="" method="post" class="form">
+ 	<form action="addRedirection.php" method="POST" class="form">
  		<div class="row">
  			
  			<div class="col-sm-6">
@@ -19,16 +20,22 @@ render('header',['title' => 'Ajouter une Consultation']);
  				<div class="form-group">
  					
  					<label for="Name">Medecin</label>
- 					<input type="text"  required class="form-control" name="Name">
-
- 					<?php 
+ 					<br>
+ 					<select name="idMedecin"idMedecin">
+ 						
+					<?php 
 
  					$result = $bdd->getMedecins();
 
- 					foreach($medecins as $medecin):
- 						echo $medecin['nom'].' '.$medecin['prenom'];
+ 					foreach($result as $medecin):
+ 					?>
+ 						<option value=<?php echo $medecin['idMedecin'];?>> <?php echo $medecin['nom'].' '.$medecin['prenom'];?></option>
+ 					<?php endforeach;?>
 
- 					 ?>
+
+ 					</select>
+
+ 					
  					 
  				</div>
  			</div>
@@ -37,8 +44,8 @@ render('header',['title' => 'Ajouter une Consultation']);
  				
  				<div class="form-group">
  					
- 					<label for="Date">Date</label>
- 					<input id="Date" type="date"   required class="form-control" name="Date">
+ 					<label for="date">Date</label>
+ 					<input id="date" type="date"   required class="form-control" name="Date">
  				</div>
  			</div> 
 
@@ -46,8 +53,8 @@ render('header',['title' => 'Ajouter une Consultation']);
  				
  				<div class="form-group">
  					
- 					<label for="Horaire">Créneau Horaire</label>
- 					<input id="Horaire" type="time" required  class="form-control" name="Horaire" placeholder="HH:MM">
+ 					<label for="horaire">Créneau Horaire</label>
+ 					<input id="horaire" type="time" required  class="form-control" name="Horaire" placeholder="HH:MM">
  				</div>
  			</div>
  		</div>
