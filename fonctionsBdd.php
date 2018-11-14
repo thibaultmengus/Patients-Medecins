@@ -117,10 +117,8 @@ class fonctionsBdd
      */
 	public function consulteRendezVousPatient($start, $end)
 	{
-		$requete = $this->bdd->prepare("SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne");// AND creneauHoraire BETWEEN \':start\' AND \':end\'");
-		$requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
-		//$requete->bindValue(':start', $start->format("Y-m-d H:i:s"));
-		//$requete->bindValue(':end', $end->format("Y-m-d H:i:s"));
+		$requete = $this->bdd->prepare("SELECT * FROM consultationPatient WHERE idPersonne=:idPersonne");
+        $requete->bindValue(':idPersonne', $_SESSION['idPersonne']);
 		$ret = $this->execute($requete, true);
         return $ret;
 	}
