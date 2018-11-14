@@ -152,9 +152,9 @@ class fonctionsBdd
      */
 	public function consulteRendezVousMedecin()
 	{
-		$requete = $this->bdd->prepare('SELECT * FROM consultationPatient WHERE idMedecin=:idMedecin');
+		$requete = $this->bdd->prepare('SELECT * FROM consultationMedecinOccupe WHERE idMedecin=:idMedecin');
 		$requete->bindValue(':idMedecin', $_SESSION['idPersonne']);
-		return $this->execute($requete);
+		return $this->execute($requete, true);
 	}
 	
     public function inscription($tab){
